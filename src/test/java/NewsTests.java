@@ -1,6 +1,7 @@
 import io.github.rainestormee.jnewsapi.NewsClient;
 import io.github.rainestormee.jnewsapi.exceptions.NewsAPIException;
 import io.github.rainestormee.jnewsapi.objects.HTTPParameter;
+import io.github.rainestormee.jnewsapi.objects.NewsArticle;
 import org.junit.jupiter.api.Test;
 
 public class NewsTests {
@@ -9,7 +10,9 @@ public class NewsTests {
 
     @Test
     public void topHeadlinesTest() throws NewsAPIException {
-        assert (client.topheadlines(new HTTPParameter("q", "bitcoin")).getArticles().get(0) != null);
+        NewsArticle article = client.topheadlines(new HTTPParameter("q", "bitcoin")).getArticles().get(0);
+        System.out.println(article.getSource() + " " + article.getAuthor() + " " + article.getTitle());
+        assert (article != null);
     }
 
     @Test
